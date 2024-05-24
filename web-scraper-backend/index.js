@@ -8,7 +8,7 @@ const port = 5000;
 
 // Set up OpenAI API
 const configuration = new Configuration({
-  apiKey: 'sk-proj-andxjVfRVEvbyTCs32H2T3BlbkFJopP2L3sbbBaXnWtTjM3e', // Replace with your actual OpenAI API key
+  apiKey: '', // Replace with your actual OpenAI API key
 });
 const openai = new OpenAIApi(configuration);
 
