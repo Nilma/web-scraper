@@ -1,22 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [data, setData] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get('http://localhost:5000/scrape-and-filter');
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Web Scraper</h1>
+        <button onClick={fetchData}>Fetch and Filter Data</button>
+        {loading ? <p>Loading...</p> : <pre>{data}</pre>}
       </header>
     </div>
   );
